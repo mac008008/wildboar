@@ -1,0 +1,23 @@
+import requests
+from config import conf
+
+def main():
+    # HTTP
+    url = "http://{0}/data/{1}".format(conf["IDCF_CHANNEL_URL"],
+                                       conf["TRIGGER_1_UUID"])
+    headers = {
+        "meshblu_auth_uuid": conf["TRIGGER_1_UUID"],
+        "meshblu_auth_token": conf["TRIGGER_1_TOKEN"]
+    };
+    payload = {"trigger":"on"}
+    while True:
+        sleep(5)
+        if GPIO.input(22):
+                r = requests.post(url, headers=headers, data=payload)
+
+if __name__ == '__main__':
+    try:
+        main()
+        # Stop on Ctrl+C and clean up
+    except KeyboardInterrupt:
+        GPIO.cleanup()
