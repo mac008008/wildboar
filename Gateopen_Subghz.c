@@ -20,7 +20,7 @@ void loop() {
 	if (digitalRead(2) == HIGH){ 
 		digitalWrite(BLUE_LED,LED_OFF);
 		// Initializing
-		SubGHz.begin(SUBGHZ_CH, SUBGHZ_PANID,  SUBGHZ_100KBPS, SUBGHZ_PWR_1MW);		// start Sub-GHz
+		SubGHz.begin(SUBGHZ_CH, SUBGHZ_PANID,  SUBGHZ_100KBPS, SUBGHZ_PWR_20MW);		// start Sub-GHz
 		// preparing data
 		SubGHz.send(SUBGHZ_PANID, HOST_ADDRESS, &gateopen, sizeof(gateopen),NULL);// send data	
 		Serial.println(&gateopen);	
